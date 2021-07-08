@@ -12,3 +12,10 @@ names = ["Harry", "Ron", "Hermoine"]
 
 for name in names:
     print(name)                 #print line by line
+
+
+print("=================================================")
+
+name = "Harry"
+for character in name:
+    print(character)            #print name character line by line
