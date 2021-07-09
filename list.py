@@ -1,7 +1,7 @@
 # Define a list of names
 names= ["Harry", "Ron", "Hermione", "Ginny"]
 
-print(names)        #print list of names
+print(names)        #print the list of names
 print(names[2])      #print third item
 
 names.append("Draco")       #add new list item
