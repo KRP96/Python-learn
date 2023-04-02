@@ -1,0 +1,422 @@
+books = [[ 'ISBN1234', 'The Solar System', 'Hardcover', 'Science', 15.00, 5 ],
+         [ 'ISBN9876', 'Types of Animal Species', 'Paperback', 'Science', 10.00, 8 ],
+         [ 'ISBN1290', 'Second World War', 'Hardcover', 'History', 12.50, 1 ]]
+
+magazines = [ [ '01', 'History of Cricket', 'color', 'Sports', 5.00, 7 ],
+              [ '02', 'Evolution of the Computer', 'black&white', 'Technology', 3.00, 21 ]]
+
+Educational_DVDs = [ [ '10', 'Birth of the Solar System', 'Astronomy', 2.50, 10 ],
+                     [ '11', 'Pythagoras Theorem', 'Math', 1.00, 50 ],
+                     [ '12', 'Archimedes Law', 'Science', 4.00, 15 ]]
+
+Lecture_CDs = [[ '21', 'Basics of Western Music', 'Music', 1.50, 11 ],
+               [ '22', 'Japanese Language', 'Foreign Languages', 2.00, 3 ]]
+
+#---------------------Books--------------------------------------------------------------------------------------------------------
+def add_book():
+    yORn = "Y"
+    while (yORn == "Y"):
+        isbn = input("Enter ISBN number: ")
+        title = input("Enter book title: ")
+        format = input("Enter book format (Hardcover/Paperback): ")
+        subject = input("Enter book subject (Science/History/Literature): ")
+        rental_price = float(input("Enter rental price per day: "))
+        num_copies = int(input("Enter number of copies: "))
+
+        book = [isbn, title, format, subject, rental_price, num_copies]
+        books.append(book)
+
+        print("Book added successfully!\n")
+        yORn = input("Do you need to add another book details in this list(Y/N): ")
+
+def remove_book():
+    isbn = input("Enter ISBN number of the book you want to remove: ")
+
+    for book in books:
+        if book[0] == isbn:
+            books.remove(book)
+            print("Book removed successfully!")
+            return
+
+    print("Book with ISBN number {} not found.".format(isbn))
+
+def view_available_books():
+    print("Available Books:")
+    for book in books:
+        if book[5]>0:
+            print(book)
+
+def view_unavailable_books():
+    print("Unavailable Books:")
+    for book in books:
+        if book[5]==0:
+            print(book)
+
+def lend_book():
+    isbn = input("Enter ISBN Number: ")
+    for book in books:
+        if book[0] == isbn:
+            print(book)
+    count = int(input("Enter count of books that you want: "))
+    for book in books:
+        if book[0] == isbn:
+            if book[5] >0:
+                book[5] -= count
+                print("Book '{}' lent successfully.".format(book[1]))
+                return
+            else:
+                print("Book '{}' is currently unavailable.".format(book[1]))
+                return
+    print("Book with ISBN '{}' not found.".format(isbn))
+
+def update_book():
+    isbn = input("Enter ISBN number that you want to update: ")
+    count = int(input("Enter count of books that you want add: "))
+    for book in books:
+        if book[0] == isbn:
+            book[5] += count
+            print("Book '{}' updated successfully.".format(book[1]))
+            return
+    print("Book with ISBN '{}' not found.".format(isbn))
+
+#--------------------------Magazines------------------------------------------------------------------------------------------
+def add_magazine():
+    yORn = "Y"
+    while (yORn == "Y"):
+        mag_num = input("Enter magazine number: ")
+        title = input("Enter magazine title: ")
+        color_bw = input("Enter print type (color/black&white): ")
+        subject = input("Enter magazine subject (Science/Technology/Sports): ")
+        rental_price = float(input("Enter rental price per day: "))
+        num_copies = int(input("Enter number of copies: "))
+
+        magazine = [mag_num, title, color_bw, subject, rental_price, num_copies]
+        magazines.append(magazine)
+
+        print("Magazine added successfully!")
+        yORn = input("Do you need to add another book details in this list(Y/N): ")
+
+def remove_magazine():
+    mag_num = input("Enter magazine number of the magazines that you want to remove: ")
+
+    for magazine in magazines:
+        if magazine[0] == mag_num:
+            magazines.remove(magazine)
+            print("Magazine removed successfully!")
+            return
+        print("Magazine with magazine number {} not found.".format(mag_num))
+
+def view_available_magazines():
+    print("Available Magazines:")
+    for magazine in magazines:
+        if magazine[5]>0:
+            print(magazine)
+
+def view_unavailable_magazines():
+    print("Unavailable Magazines:")
+    for magazine in magazines:
+        if magazine[5]==0:
+            print(magazine)
+
+def lend_magazine():
+    mag_num = input("Enter Magazine number of the Magazines: ")
+    for magazine in magazines:
+        if magazine[0] == mag_num:
+            print(magazine)
+    count = int(input("Enter count of magazines that you want to lend: "))
+    for magazine in magazines:
+        if magazine[0] == mag_num:
+            if magazine[5] > 0:
+                magazine[5] -= count
+                print("Magazine '{}' lent successfully.".format(magazine[1]))
+                return
+            else:
+                print("Magazine '{}' is currently unavailable.".format(magazine[1]))
+                return
+    print("Magazine with Magazine Number '{}' not found.".format(mag_num))
+
+def update_magazine():
+    mag_num = input("Enter Magazine number that you want to update: ")
+    count = int(input("Enter count of magazines that you want to add: "))
+    for magazine in magazines:
+        if magazine[0] == mag_num:
+            magazine[5] += count
+            print("Magazine '{}' updated successfully.".format(magazine[1]))
+            return
+    print("Magazine with Magazine number '{}' not found.".format(mag_num))
+
+#------------------Educational_DVDs------------------------------------------------------------------------------------------
+def add_dvd():
+    yORn = "Y"
+    while (yORn == "Y"):
+        dvd_num = input("Enter DVD number: ")
+        title = input("Enter DVD title: ")
+        subject = input("Enter DVD subject (Astronomy/Math/Technology): ")
+        rental_price = float(input("Enter rental price per day: "))
+        num_copies = int(input("Enter number of copies: "))
+
+        dvd = [dvd_num, title, subject, rental_price, num_copies]
+        Educational_DVDs.append(dvd)
+
+        print("Educational DVD added successfully!")
+        yORn = input("Do you need to add another book details in this list(Y/N): ")
+
+def remove_dvd():
+    dvd_num = input("Enter DVD number of the Educational DVDs that you want to remove: ")
+
+    for Educational_DVD in Educational_DVDs:
+        if Educational_DVD[0] == dvd_num:
+            Educational_DVDs.remove(Educational_DVD)
+            print("Educational DVD removed Successfully!")
+            return
+        print("Educational DVDs with DVD number {} not found.".format(dvd_num))
+
+def view_available_dvds():
+    print("Available Educational DVDs:")
+    for Educational_DVD in Educational_DVDs:
+        if Educational_DVD[4]>0:
+            print(Educational_DVD)
+
+def view_unavailable_dvds():
+    print("Unavailable Educational DVDs:")
+    for Educational_DVD in Educational_DVDs:
+        if Educational_DVD[4]==0:
+            print(Educational_DVD)
+
+def lend_dvd():
+    dvd_num = input("Enter DVD Number to lend one: ")
+    for Educational_DVD in Educational_DVDs:
+        if Educational_DVD[0] == dvd_num:
+            print(Educational_DVD)
+    count = int(input("Enter count of Educational DVDs that you want to lend: "))
+    for Educational_DVD in Educational_DVDs:
+        if Educational_DVD[0] == dvd_num:
+            if Educational_DVD[4] > 0:
+                Educational_DVD[4] -= count
+                print("Educational DVD '{}' lent successfully.".format(Educational_DVD[1]))
+                return
+            else:
+                print("Educational DVD '{}' is currently unavailable.".format(Educational_DVD[1]))
+                return
+    print("Educational DVD with DVD Number '{}' not found.".format(dvd_num))
+
+def update_dvd():
+    dvd_num = input("Enter Educational DVD number that you want to update: ")
+    count = int(input("Enter count of Educational DVDs that you want to add: "))
+    for Educational_DVD in Educational_DVDs:
+        if Educational_DVD[0] == dvd_num:
+            Educational_DVD[4] += count
+            print("Educational DVD '{}' updated successfully.".format(Educational_DVD[1]))
+            return
+    print("Educational DVD with DVD number '{}' not found.".format(dvd_num))
+
+#----------------------------Lecture_CDs--------------------------------------------------------------------------------------
+def add_cd():
+    yORn = "Y"
+    while (yORn == "Y"):
+        cd_num = input("Enter CD number: ")
+        title = input("Enter CD title: ")
+        subject = input("Enter CD subject (Music/Math/Foreign Languages): ")
+        rental_price = float(input("Enter rental price per day: "))
+        num_copies = int(input("Enter number of copies: "))
+
+        cd = [cd_num, title, subject, rental_price, num_copies]
+        Lecture_CDs.append(cd)
+
+        print("CD added successfully!")
+        yORn = input("Do you need to add another book details in this list(Y/N): ")
+
+def remove_cd():
+    cd_num = input("Enter CD number of the Lecture CDs that you want to remove: ")
+
+    for Lecture_CD in Lecture_CDs:
+        if Lecture_CDs[0] == cd_num:
+            Lecture_CDs.remove(Lecture_CD)
+            print("Lecture CD removed Successfully!")
+            return
+        print("Lecture CDs with CD number {} not found.".format(cd_num))
+
+def view_available_cds():
+    print("Available CDs:")
+    for Lecture_CD in Lecture_CDs:
+        if Lecture_CD[4]>0:
+            print(Lecture_CD)
+
+def view_unavailable_cds():
+    print("Unavailable CDs:")
+    for Lecture_CD in Lecture_CDs:
+        if Lecture_CD[4]==0:
+            print(Lecture_CD)
+
+def lend_cd():
+    cd_num= input("Enter Lecture CD number to lend one: ")
+    for Lecture_CD in Lecture_CDs:
+        if Lecture_CD[0] == cd_num:
+            print(Lecture_CD)
+    count = int(input("Enter count of Lecture CDs that you want to lend: "))
+    for Lecture_CD in Lecture_CDs:
+        if Lecture_CD[0] == cd_num:
+            if Lecture_CD[4] > 0:
+                Lecture_CD[4] -= count
+                print("Lecture CD '{}' lent successfully.".format(Lecture_CD[1]))
+                return
+            else:
+                print("Lecture CD '{}' is currently unavailable.".format(Lecture_CD[1]))
+                return
+    print("Lecture CD with CD Number '{}' not found.".format(cd_num))
+
+def update_cd():
+    cd_num = input("Enter Lecture CD number that you want to update: ")
+    count = int(input("Enter count of Lecture CDs that you want to add: "))
+    for Lecture_CD in Lecture_CDs:
+        if Lecture_CD[0] == cd_num:
+            Lecture_CDs[4] += count
+            print("Lecture CD '{}' updated successfully.".format(Lecture_CD[1]))
+            return
+    print("Lecture CD with CD number '{}' not found.".format(cd_num))
+
+#----------------------------------Filter with subject---------------------------------------------------------------------------
+def view_resources_by_subject(subject):
+
+    print("Books:")
+    for book in books:
+        if book[3] == subject:
+            print(book)
+
+    print("\nMagazines:")
+    for magazine in magazines:
+        if magazine[3] == subject:
+            print(magazine)
+
+    print("\nEducational DVDs:")
+    for dvd in Educational_DVDs:
+        if dvd[2] == subject:
+            print(dvd)
+
+    print("\nLecture CDs:")
+    for cd in Lecture_CDs:
+        if cd[2] == subject:
+            print(cd)
+
+#-------------------For display thing------------------------------------------------------------------------------------------
+def display_menu():
+    print("\n--------------------------------------------------------------------------------------")
+    print("Select a resource type:")
+    print("1. Book")
+    print("2. Magazine")
+    print("3. Educational DVD")
+    print("4. Lecture CD")
+    print("0. Exit")
+    print("-------------------------------------------------------------------------------------")
+    choice = int(input("Enter choice: "))
+    return choice
+
+def display_resource_menu(resource_type):
+    print("\n-------------------------------------------------------------------------------------")
+    print("Select an action for {}:".format(resource_type))
+    print("1. Add a resource")
+    print("2. Remove a resource")
+    print("3. View currently available resources")
+    print("4. View currently unavailable resources")
+    print("5. View all resources filtered by subject")
+    print("6. Lend a resource")
+    print("7. Update resource when received back")
+    print("0. Exit")
+    print("--------------------------------------------------------------------------------------")
+    choice = int(input("Enter choice: "))
+    return choice
+
+#-------------------------------------Other Codes-----------------------------------------------------------------------------
+while True:
+    resource_type = None
+    choice = display_menu()
+
+    if choice == 1:
+        resource_type = "book"
+    elif choice == 2:
+        resource_type = "magazine"
+    elif choice == 3:
+        resource_type = "educational DVD"
+    elif choice == 4:
+        resource_type = "lecture CD"
+    elif choice == 0:
+        exit()
+    else:
+        print("Invalid choice. Please try again.")
+        continue
+
+    action_choice = display_resource_menu(resource_type)
+
+    if action_choice == 1:
+        if resource_type == "book":
+            add_book()
+        elif resource_type == "magazine":
+            add_magazine()
+        elif resource_type == "educational DVD":
+            add_dvd()
+        elif resource_type == "lecture CD":
+            add_cd()
+
+    elif action_choice == 2:
+        if resource_type == "book":
+            remove_book()
+        elif resource_type == "magazine":
+            remove_magazine()
+        elif resource_type == "educational DVD":
+            remove_dvd()
+        elif resource_type == "lecture CD":
+            remove_cd()
+
+    elif action_choice == 3:
+        if resource_type == "book":
+            view_available_books()
+        elif resource_type == "magazine":
+            view_available_magazines()
+        elif resource_type == "educational DVD":
+            view_available_dvds()
+        elif resource_type == "lecture CD":
+            view_available_cds()
+
+    elif action_choice == 4:
+        if resource_type == "book":
+            view_unavailable_books()
+        elif resource_type == "magazine":
+            view_unavailable_magazines()
+        elif resource_type == "educational DVD":
+            view_unavailable_dvds()
+        elif resource_type == "lecture CD":
+            view_unavailable_cds()
+
+    elif action_choice == 5:
+        subject = input("Enter subject: ")
+        view_resources_by_subject(subject)
+
+    elif action_choice == 6:
+        if resource_type == "book":
+            lend_book()
+        elif resource_type == "magazine":
+            lend_magazine()
+        elif resource_type == "educational DVD":
+            lend_dvd()
+        elif resource_type == "lecture CD":
+            lend_cd()
+
+    elif action_choice == 7:
+        if resource_type == "book":
+            update_book()
+        elif resource_type == "magazine":
+            update_magazine()
+        elif resource_type == "educational DVD":
+            update_dvd()
+        elif resource_type == "lecture CD":
+            update_cd()
+
+    elif action_choice == 0:
+        exit()
+    else:
+        print("Invalid choice. Please try again.")
+
+
+
+
+
